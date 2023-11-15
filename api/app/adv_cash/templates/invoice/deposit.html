@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+  </style>
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *::after,
+    *::before {
+      box-sizing: inherit;
+    }
+
+    ul[class],
+    ol[class] {
+      padding: 0;
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    ul[class],
+    ol[class],
+    li,
+    figure,
+    figcaption,
+    blockquote,
+    dl,
+    dd {
+      margin: 0;
+    }
+
+    ul[class] {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    input,
+    button,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div
+    style="font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 14px; display: flex; flex-direction: column; align-items: center;">
+    <div style="max-width: 859px; width: 100%; padding: 30px; margin: 50px 0; border: 1px solid #666;">
+      <div class="table-responsive">
+        <style>
+          table.iksweb {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 3px solid #000;
+            height: auto;
+            vertical-align: top;
+            font-weight: 500;
+            margin-bottom: 32px;
+          }
+
+          table.iksweb td,
+          table.iksweb th {
+            border: 1px solid #595959;
+          }
+
+          table.iksweb td,
+          table.iksweb th {
+            padding: 3px;
+            width: 30px;
+            height: 35px;
+            vertical-align: top;
+            line-height: 1.9;
+          }
+
+          table.iksweb th {
+            background: #347c99;
+            color: #fff;
+            font-weight: normal;
+          }
+        </style>
+        <table class="iksweb">
+          <tbody>
+            <tr>
+              <td style="width: 40%;" colspan="2" rowspan="3">АО «Тинькофф Банк»</td>
+              <td style="width: 10%;">БИК</td>
+              <td style="width: 40%; border: none;" colspan="2">044525974</td>
+            </tr>
+            <tr>
+              <td rowspan="3">Сч. №</td>
+              <td colspan="2" style="border: none;">30101810145250000974</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="border: none;"></td>
+            </tr>
+            <tr style="border-bottom: 3px solid #000;">
+              <td colspan="2">Банк получателя</td>
+              <td colspan="2" style="border: none;"></td>
+            </tr>
+            <tr>
+              <td>ИНН 7730620070</td>
+              <td>КПП 773001001</td>
+              <td rowspan="6">Сч. №</td>
+              <td colspan="2" style="border-bottom: none;">40703810000000738571</td>
+            </tr>
+            <tr>
+              <td colspan="2" rowspan="3">МПК «Агро-полис»</td>
+              <td colspan="2" style="border: none;"></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="border: none;"></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="border: none;"></td>
+            </tr>
+            <tr>
+              <td colspan="2">Получатель</td>
+              <td colspan="2" style="border: none;"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="padding: 0 6px; margin-bottom: 32px;">
+          <div
+            style="font-size: 24px; font-weight: 600; padding-bottom: 12px; width: 100%; border-bottom: 3px solid #000;">
+            Счет № 2309261 от 26.09.2023 г.
+          </div>
+        </div>
+        <div style="padding: 0 6px; margin-bottom: 24px;">
+          <div style="display: flex; align-items: flex-start; font-size: 15.8px; margin-bottom: 16px;">
+            <div style="font-weight: 500; margin-right: 8px;">
+              Поставщик:
+            </div>
+            <div style="font-weight: 600;">
+              МПК «Агро-полис», ИНН 7730620070, КПП 773001001, адрес: 121170, г. Москва, ул. Поклонная, д. 8, пом. 9,
+              комн. 6, раб. место 3, тел.: +7 928-245-26-47
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; font-size: 15.8px;">
+            <div style="font-weight: 500; margin-right: 8px;">
+              Покупатель:
+            </div>
+            <div style="font-weight: 600;">
+              {{company_name}} ИНН 1234567890, КПП 123456789, адрес: 123456, г. Москва, ул. Космонавтов, д. 9, тел.:+7
+              123-456-78-90
+            </div>
+          </div>
+        </div>
+        <table style="border-collapse: collapse; border: 3px solid #000; margin-bottom: 24px;">
+          <thead style="font-size: 18px; font-weight: 600; text-align: center;">
+            <tr>
+              <td style="border: 1px solid #595959; width: 5%; height: 35px;">№</td>
+              <td style="border: 1px solid #595959; width: 50%; height: 35px;">Наименование работ, услуг</td>
+              <td style="border: 1px solid #595959; width: 12%; height: 35px;">Кол-вo</td>
+              <td style="border: 1px solid #595959; width: 8%; height: 35px;">Ед</td>
+              <td style="border: 1px solid #595959; height: 35px;">Цена</td>
+              <td style="border: 1px solid #595959; height: 35px;">Сумма</td>
+            </tr>
+          </thead>
+          <tbody style="font-size: 14px; font-weight: 500; vertical-align: top;">
+            <tr>
+              <td style="border: 1px solid #595959; padding: 4px; text-align: center;">1</td>
+              <td style="border: 1px solid #595959; padding: 4px;">
+                Оплата вступительного взноса по договору № 2305121 от 12 мая 2023 года
+              </td>
+              <td style="border: 1px solid #595959; padding: 4px; text-align: right;">1</td>
+              <td style="border: 1px solid #595959; padding: 4px; text-align: right;">шт.</td>
+              <td style="border: 1px solid #595959; padding: 4px; text-align: right;">1999,00</td>
+              <td style="border: 1px solid #595959; padding: 4px; text-align: right;">1999,00</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #595959; padding: 4px; text-align: center;">2</td>
+              <td style="border: 1px solid #595959; padding: 4px;">
+                Оплата минимального паевого взноса по договору № 2305121 от 12 мая 2023 года
+              </td>
+              <td style="border: 1px solid #595959; padding: 4px; text-align: right;">1</td>
+              <td style="border: 1px solid #595959; padding: 4px; text-align: right;">шт.</td>
+              <td style="border: 1px solid #595959; padding: 4px; text-align: right;">1,00</td>
+              <td style="border: 1px solid #595959; padding: 4px; text-align: right;">1,00</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="padding: 0 6px; text-align: right; font-size: 18px; margin-bottom: 24px;">
+          <div style="display: flex; justify-content: flex-end; align-items: flex-start; margin-bottom: 4px;">
+            <div style="font-weight: 600; white-space: nowrap; margin-right: 100px;">Итого:</div>
+            <div style="width: 100px; font-weight: 500; white-space: nowrap;">2000,00</div>
+          </div>
+          <div style="display: flex; justify-content: flex-end; align-items: flex-start; margin-bottom: 4px;">
+            <div style="font-weight: 600; white-space: nowrap; margin-right: 100px;">В том числе НДС:</div>
+            <div style="width: 100px; font-weight: 500; white-space: nowrap;">0,00</div>
+          </div>
+          <div style="display: flex; justify-content: flex-end; align-items: flex-start;">
+            <div style="font-weight: 600; white-space: nowrap; margin-right: 100px;">Всего к оплате:</div>
+            <div style="width: 100px; font-weight: 500; white-space: nowrap;">2000,00</div>
+          </div>
+        </div>
+        <div style="padding: 0 6px 16px; font-size: 16px; line-height: 1.4; font-weight: 500; border-bottom: 4px solid #000;">
+          <div style="border-bottom: 2px solid #000; max-width: 480px; padding-bottom: 16px; margin-bottom: 4px;">
+            Всего наименований 2, на сумму 2000,00 руб. <br>
+            две тысячи рублей 00 копеек
+          </div>
+          <div>
+            Счет: Оплата вступительного и минимального паевого взноса
+          </div>
+        </div>
+        <div style="padding: 60px 6px 0; font-size: 16px; font-weight: 600;">
+          <div style="display: flex; align-items: flex-start; margin-bottom: 32px;">
+            <div style="width: 240px;">Председатель совета</div>
+            <div style="width: 260px; height: 19px; margin-right: 16px; border-bottom: 1px solid #000; position: relative;">
+              <img style="position: absolute; transform: translateX(-50%); left: 50%; bottom: -20px; width: 100px;" src="images/novor.svg" alt="">
+            </div>
+            <div>Новоруссов В.Л.</div>
+          </div>
+          <div style="display: flex; align-items: flex-start;">
+            <div style="width: 240px;">Председатель правления</div>
+            <div style="width: 260px; height: 19px; margin-right: 16px; border-bottom: 1px solid #000; position: relative;">
+              <img style="position: absolute; transform: translateX(-50%); left: 50%; bottom: -18px; width: 124px;" src="images/vasil.svg" alt="">
+            </div>
+            <div>Васильев В.Ф.</div>
+          </div>
+        </div>
+        <div style="margin-left: 172px; margin-top: -32px; width: 190px; z-index: -1; position: relative;">
+          <img src="images/seal.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.min.js"></script>
+</body>
+
+</html>

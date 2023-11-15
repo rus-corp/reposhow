@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  worker:
+    image: cr.selcloud.ru/clickworkru/rus-corp/click:master
+    restart: always
+    working_dir: /code
+    command: celery -A ClickWork worker -l INFO
+    env_file:
+      - .env
+    network_mode: host
+
+  web:
+    image: cr.selcloud.ru/clickworkru/rus-corp/click:master
+    restart: always
+    working_dir: /code
+    command: uwsgi --ini uwsgi.ini
+    env_file:
+      - .env
+    network_mode: host
+    volumes:
+      - ./static:/static
+
+  migrations:
+    image: cr.selcloud.ru/clickworkru/rus-corp/click:master
+    working_dir: /code
+    command: python manage.py migrate
+    env_file:
+      - .env
+    restart: "no"
+    network_mode: host

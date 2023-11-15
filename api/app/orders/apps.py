@@ -1,0 +1,10 @@
+from django.apps import AppConfig
+
+
+class OrdersConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'app.orders'
+    verbose_name = 'Заказы'
+
+    def ready(self):
+        import app.orders.signals

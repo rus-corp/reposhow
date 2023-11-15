@@ -1,0 +1,332 @@
+@base_url = http://127.0.0.1:8000/api/v1/
+###
+
+
+#Регистрация
+POST {{base_url}}register/7a15b67e69eb/
+Content-Type: application/json
+
+{
+    "email": "ruslan.prusakov@gmail.com",
+    "password": "290987Hecjfy"
+}
+
+###a
+#ЛОГИН
+POST {{base_url}}login/
+Content-Type: application/json
+
+{
+    "email": "ruslan.prusakov@gmail.com",
+    "password": "290987Hecjfy"
+}
+
+###
+#список заказов
+GET {{base_url}}orders/test/
+Authorization: TOKEN 16e6ef325a5c6dfb0bcb31d5194efaadf990326f5bd62e71a9fa29a8e0123cb5
+
+
+###
+#создание заказа
+POST {{base_url}}orders/
+Content-Type: application/json
+Authorization: TOKEN bff54187d2075c93da3787df6ccb1ec560e0d353eb099515fe2bdbedde471b81
+
+  {
+      "name": "order23",
+      "description": "adadasdafdsf",
+      "currency": "RUB",
+      "specialization_id": 1,
+      "country": [{
+        "id": 1,
+        "name": "russia"
+      }]   
+  }
+
+
+###
+#откликнуться на заказ
+POST {{base_url}}orders/order23/enroll/
+Content-Type: application/json
+Authorization: TOKEN a04b4fbca63dcdba8de3fb9e15880e572481fd00f6f85a476550efc69bb6d164
+
+###
+POST {{base_url}}response-comment/
+Content-Type: application/json
+Authorization: TOKEN a04b4fbca63dcdba8de3fb9e15880e572481fd00f6f85a476550efc69bb6d164
+
+{
+  "order_response": 5,
+  "text": "ajdjddk"
+}
+
+
+###
+GET {{base_url}}voiting/
+Content-Type: application/json
+Authorization: TOKEN f40497cdd84f1f05bac8ad37f006789dccace96a52d5fb5b6faf639903e4335c
+
+###
+PATCH {{base_url}}voiting/2/
+Content-Type: application/json
+Authorization: TOKEN 6e04e3aa45a78dfea019952fc6472d27084b41f61e018c8bc2d6097282032213
+
+{
+  "voites": [
+    {
+      "abstaned_voice": 1
+    }
+  ]
+}
+###
+
+
+###
+GET {{base_url}}activity/
+Content-Type: application/json
+
+###
+GET {{base_url}}activity/dizajn-i-kreativ/categories/ HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET {{base_url}}personal-account/
+Content-Type: application/json
+Authorization: TOKEN a4e7ac6d899b24804aa266e5a14a9401879c342ea802c1ffcb40ca40fec6cff3
+
+###
+PATCH {{base_url}}personal-account/32/
+Content-Type: application/json
+Authorization: TOKEN a4e7ac6d899b24804aa266e5a14a9401879c342ea802c1ffcb40ca40fec6cff3
+
+{
+  "user_bank": [{
+    "bank_name": "VTB",
+    "bank_address": "kazan"
+  }]
+}
+
+###
+POST {{base_url}}personal-account/
+Content-Type: application/json
+Authorization: TOKEN a4e7ac6d899b24804aa266e5a14a9401879c342ea802c1ffcb40ca40fec6cff3
+
+{
+  "user_info": {
+    "first_name": "bla",
+    "last_name": "bla",
+    "father_name": "asdasd",
+    "phone_number": "asdsad",
+    "adress": "fghfghf",
+    "date_of_birth": "1987-09-29",
+    "country": {"name":"Russia"}
+  },
+  "user_bank": [
+    {
+      "bank_name": "sber"
+    }
+  ]
+}
+
+
+###
+GET {{base_url}}user-specialization/
+Content-Type: application/json
+Authorization: TOKEN 34cce5cbfe4df5c10cab3a5806f89582614e45597927ef9ba45801845147fc15
+
+###
+
+DELETE {{base_url}}user-specialization/21/
+Content-Type: application/json
+Authorization: TOKEN cc316272bf0057604b64d6886137004e68878a3df71792f883c48f75018f2c36
+
+###
+POST {{base_url}}user-specialization/
+Content-Type: application/json
+Authorization: TOKEN 9b47420bc6fa61ec3e0877adbbd55c5980c7345f104a4e402df1bc2fbb528664
+
+{
+  "specialization": {
+   "name": "spec1" 
+  },
+  "is_main": "True"
+}
+
+###
+PATCH {{base_url}}user-specialization/
+Content-Type: application/json
+Authorization: TOKEN 21a33b2f12b6e0ade362f96f4d80ebcfd10b60d80633c46413356d8b3a1acfe4
+
+{
+  "specialization": {
+    "name": "spec1"
+  },
+  "is_main": "True"
+}
+
+###
+POST {{base_url}}/orders/1/review/ HTTP/1.1
+Content-Type: application/json
+Authorization: TOKEN 825dec822d9e09ee66170d62320a649cb721f934752991085a5475c8b667cc76
+
+{
+    "description": "test desc",
+}
+
+
+###
+GET {{base_url}}company/
+Content-Type: application/json
+Authorization: TOKEN d16ef5ed82e16dbeb4b19ca683cfc0c5093a92f3370d6080971ada42771f3297
+
+###
+
+PATCH {{base_url}}company/2/
+Content-Type: application/json
+Authorization: TOKEN d16ef5ed82e16dbeb4b19ca683cfc0c5093a92f3370d6080971ada42771f3297
+
+{
+  "employee_position": "mres"
+}
+
+###
+POST {{base_url}}company/
+Content-Type: application/json
+Authorization: TOKEN 9a049f767ec247e5925842fc8413441c16664277262096e0eea0d3c42065b50d
+
+{
+  "company_name": "ads"
+}
+
+###
+
+############## Книга пайщика #######################
+GET {{base_url}}operations/
+Content-Type: application/json
+Authorization: TOKEN 21ffe188423218372c34caff08ab0d56c966f15bad1086a380e5ec314b644b92
+
+
+
+############## Портфолио ###########################
+GET {{base_url}}works/list/1
+Content-Type: application/json
+Authorization: TOKEN ae1cd1754756e299f16a504e6efb9831bd1cb8b8b60cc5f54a62a70635d4ad8c
+
+###
+POST {{base_url}}works/create
+Content-Type: application/json
+Authorization: TOKEN ae1cd1754756e299f16a504e6efb9831bd1cb8b8b60cc5f54a62a70635d4ad8c
+
+{
+  "title": "bla blaasdasd",
+  "description": "desc bla",
+  "table_place": 1
+}
+
+
+
+########### Контракт #################
+POST {{base_url}}contract/
+Content-Type: application/application/json
+Authorization: TOKEN d0037649257d83221c6e53e9558a7fcf4e3ceedc1836de27e108748e079bdcf9
+
+
+#####aффaaaaaaa
+GET {{base_url}}contract/
+Content-Type: application/application/json
+Authorization: TOKEN a4e7ac6d899b24804aa266e5a14a9401879c342ea802c1ffcb40ca40fec6cff3
+####a
+
+PATCH {{base_url}}contract/user-contract/
+Content-Type: application/application/json
+Authorization: TOKEN a4e7ac6d899b24804aa266e5a14a9401879c342ea802c1ffcb40ca40fec6cff3
+
+############# Смена пароля ####################
+POST {{base_url}}resetpassword/
+Content-Type: application/json
+
+{
+  "email": "ruslan.prusakov@gmail.com"
+}
+
+######
+POST {{base_url}}resetpassword-confirm/
+Content-Type: application/json
+
+{
+  "new_password": "290987Hecjfy",
+  "new_password2": "290987Hecjfy",
+  "token": "b45e65af92b7c74c3712fa1",
+  "uid": "MjE"
+}
+
+##########################################
+# 'token', 'uid', 
+############## Перевод денег ######################
+POST {{base_url}}transfer/operation/transferuser/
+Content-Type: application/json
+Authorization: TOKEN 557ed9db14634a37e9855ab3be54762d8dbb2a8f9d1abf5f70f8e0908b30d3dc
+
+
+{
+  "currency": "RUB",
+  "to_account": "23100837",
+  "amount": 10
+}
+
+
+################### Оплата тинькоф ###################
+POST {{base_url}}payment/operation/transfer/tinkof_payment/
+Content-Type: application/json
+Authorization: TOKEN 55296f005c5d391862155437f1c42511693b7d86365df08f78d512b55fe3ddbe
+
+{
+  "amount": 2000
+}
+
+###aa
+GET {{base_url}}payment/operation/transfer/currency/
+Content-Type: application/json
+Authorization: TOKEN 127fc11200cf68b05e97b5b74cb64c3b78ff0f0a275e788aa688d7ca41b40dc0
+
+###
+GET {{base_url}}payment/operation/transfer/method/rub/
+Content-Type: application/json
+Authorization: TOKEN 127fc11200cf68b05e97b5b74cb64c3b78ff0f0a275e788aa688d7ca41b40dc0
+
+
+####
+GET {{base_url}}payment/operation/transfer/agregator/adv_wallet/
+Content-Type: application/json
+Authorization: TOKEN 127fc11200cf68b05e97b5b74cb64c3b78ff0f0a275e788aa688d7ca41b40dc0
+
+
+#######фыaфa
+##################### Ответ от тинькоф #######################
+POST {{base_url}}payment/operation/transfer/tinkof/request/
+Content-Type: application/json
+
+{
+  "TerminalKey":"1510572937960",
+  "OrderId":"tinkof_payment10210000000106R22101701",
+  "Success":true,
+  "Status":"CONFIRMED",
+  "PaymentId":"231017732",
+  "ErrorCode":"0",
+  "Amount": 200000,
+  "CardId":867911,
+  "Pan":"430000**0777",
+  "ExpDate":"1122",
+  "Token":"d0815e288f121255d5d6b77831fb486cc5e9f91914a3f58a99b6118b54676d84"
+}
+
+#####s
+
+POST {{base_url}}payment/invoce_to_company/
+Content-Type: application/json
+Authorization: TOKEN d0037649257d83221c6e53e9558a7fcf4e3ceedc1836de27e108748e079bdcf9
+
+
+#######

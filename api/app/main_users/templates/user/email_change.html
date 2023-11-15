@@ -1,0 +1,5 @@
+{% autoescape off %} 
+Привет {{ token.user.first_name }},
+Пожалуйста, нажмите на ссылку, чтобы подтвердить смену электронной почты,
+http://{{ domain }}{% url 'email_token' uidb64=uid token=token.key %}?new_email={{ new_email }}
+{% endautoescape %}

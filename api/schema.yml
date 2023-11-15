@@ -1,0 +1,5835 @@
+openapi: 3.0.3
+info:
+  title: ClickWork
+  version: 1.0.0
+  description: '...'
+paths:
+  /api/v1/activity/:
+    get:
+      operationId: activity_list
+      tags:
+      - activity
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity'
+          description: ''
+  /api/v1/activity/{activity}/categories/:
+    get:
+      operationId: activity_categories_list
+      parameters:
+      - in: path
+        name: activity
+        schema:
+          type: string
+        required: true
+      tags:
+      - activity
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+          description: ''
+  /api/v1/categories/{categories}/specializations/:
+    get:
+      operationId: categories_specializations_list
+      parameters:
+      - in: path
+        name: categories
+        schema:
+          type: string
+        required: true
+      tags:
+      - categories
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Specialization'
+          description: ''
+  /api/v1/chats/:
+    get:
+      operationId: chats_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      tags:
+      - chats
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chat'
+          description: ''
+    post:
+      operationId: chats_create
+      tags:
+      - chats
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Chat'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Chat'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Chat'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+          description: ''
+  /api/v1/chats/{chat_id}/:
+    get:
+      operationId: chats_list_2
+      parameters:
+      - in: path
+        name: chat_id
+        schema:
+          type: integer
+        required: true
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      tags:
+      - chats
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chat'
+          description: ''
+  /api/v1/chats/{chat_id}/message/:
+    post:
+      operationId: chats_message_create
+      parameters:
+      - in: path
+        name: chat_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - chats
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Message'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Message'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chat'
+          description: ''
+  /api/v1/company/:
+    get:
+      operationId: company_list
+      tags:
+      - company
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserInfoCompany'
+          description: ''
+    post:
+      operationId: company_create
+      tags:
+      - company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInfoCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserInfoCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserInfoCompany'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfoCompany'
+          description: ''
+  /api/v1/company/{id}/:
+    get:
+      operationId: company_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Компания Пользователя.
+        required: true
+      tags:
+      - company
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfoCompany'
+          description: ''
+    put:
+      operationId: company_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Компания Пользователя.
+        required: true
+      tags:
+      - company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInfoCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserInfoCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserInfoCompany'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfoCompany'
+          description: ''
+    patch:
+      operationId: company_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Компания Пользователя.
+        required: true
+      tags:
+      - company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserInfoCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserInfoCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserInfoCompany'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfoCompany'
+          description: ''
+    delete:
+      operationId: company_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Компания Пользователя.
+        required: true
+      tags:
+      - company
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/company_docs/comapny_docs/:
+    get:
+      operationId: company_docs_comapny_docs_list
+      tags:
+      - company_docs
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyDoc'
+          description: ''
+  /api/v1/company_docs/comapny_docs/{slug}/:
+    get:
+      operationId: company_docs_comapny_docs_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - company_docs
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDoc'
+          description: ''
+  /api/v1/company_docs/docs/{slug}/:
+    get:
+      operationId: company_docs_docs_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - company_docs
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDoc'
+          description: ''
+  /api/v1/company_docs/founder_agreement/:
+    put:
+      operationId: company_docs_founder_agreement_update
+      tags:
+      - company_docs
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    patch:
+      operationId: company_docs_founder_agreement_partial_update
+      tags:
+      - company_docs
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/company_docs/founder_revoke/:
+    put:
+      operationId: company_docs_founder_revoke_update
+      tags:
+      - company_docs
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    patch:
+      operationId: company_docs_founder_revoke_partial_update
+      tags:
+      - company_docs
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/company_docs/referal_link/:
+    post:
+      operationId: company_docs_referal_link_create
+      tags:
+      - company_docs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReferalLink'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ReferalLink'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReferalLink'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferalLink'
+          description: ''
+  /api/v1/contract/:
+    get:
+      operationId: contract_list
+      tags:
+      - contract
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contract'
+          description: ''
+    post:
+      operationId: contract_create
+      tags:
+      - contract
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contract'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contract'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contract'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contract'
+          description: ''
+  /api/v1/contract/user-contract/:
+    put:
+      operationId: contract_user_contract_update
+      tags:
+      - contract
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contract'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contract'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contract'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contract'
+          description: ''
+    patch:
+      operationId: contract_user_contract_partial_update
+      tags:
+      - contract
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedContract'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedContract'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedContract'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contract'
+          description: ''
+  /api/v1/country/:
+    get:
+      operationId: country_list
+      tags:
+      - country
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+          description: ''
+  /api/v1/country/{id}/:
+    get:
+      operationId: country_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Страна.
+        required: true
+      tags:
+      - country
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country'
+          description: ''
+  /api/v1/emailtoken/{uidb64}/{token}/:
+    get:
+      operationId: emailtoken_retrieve
+      description: Подтверждение почты
+      parameters:
+      - in: path
+        name: token
+        schema:
+          type: string
+        description: Токен подтверждения почты (подставляется из url при нажатии пользователем
+          на ссылку)
+        required: true
+      - in: path
+        name: uidb64
+        schema:
+          type: string
+        description: Зашифрованный id пользователя (подставляется из url при нажатии
+          пользователем на ссылку)
+        required: true
+      tags:
+      - emailtoken
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+              examples:
+                GreatExample:
+                  value:
+                    Status: true
+                  summary: Great example
+          description: Request successful.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+              examples:
+                BadExample:
+                  value:
+                    Status: false
+                    Errors: Ссылка активации недействительна
+                  summary: Bad example
+          description: Request failed.
+  /api/v1/faq/:
+    get:
+      operationId: faq_list
+      tags:
+      - faq
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Question'
+          description: ''
+  /api/v1/faq/{id}/:
+    get:
+      operationId: faq_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Вопрос.
+        required: true
+      tags:
+      - faq
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+          description: ''
+  /api/v1/freelancers/:
+    get:
+      operationId: freelancers_list
+      parameters:
+      - in: query
+        name: activity
+        schema:
+          type: array
+          items:
+            type: string
+        description: Несколько значений могут быть разделены запятыми.
+        explode: false
+        style: form
+      - in: query
+        name: category
+        schema:
+          type: array
+          items:
+            type: string
+        description: Несколько значений могут быть разделены запятыми.
+        explode: false
+        style: form
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: specialization
+        schema:
+          type: array
+          items:
+            type: string
+        description: Несколько значений могут быть разделены запятыми.
+        explode: false
+        style: form
+      tags:
+      - freelancers
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCustomUserListList'
+          description: ''
+  /api/v1/freelancers/{slug}/:
+    get:
+      operationId: freelancers_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - freelancers
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUserList'
+          description: ''
+  /api/v1/login/:
+    post:
+      operationId: login_create
+      description: |-
+        Логин пользователя по email и password
+        Получение токена
+      tags:
+      - login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoginUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoginUser'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+              examples:
+                GreatExample:
+                  value:
+                    Status: true
+                    Token: string
+                  summary: Great example
+          description: Request successful.
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+              examples:
+                BadExample:
+                  value:
+                    Status: false
+                    Errors: Не удалось авторизировать.
+                  summary: Bad example
+                BadExample2:
+                  value:
+                    Status: false
+                    Errors: Не указаны все необходимые аргументы.
+                  summary: Bad example 2
+          description: Request failed.
+  /api/v1/mail/{user__slug}/:
+    patch:
+      operationId: mail_partial_update
+      parameters:
+      - in: path
+        name: user__slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - mail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMailPermission'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMailPermission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMailPermission'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MailPermission'
+          description: ''
+  /api/v1/news/:
+    get:
+      operationId: news_list
+      tags:
+      - news
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/News'
+          description: ''
+    post:
+      operationId: news_create
+      tags:
+      - news
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ViewNews'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ViewNews'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ViewNews'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/News'
+          description: ''
+  /api/v1/news/{id}/:
+    get:
+      operationId: news_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this новость.
+        required: true
+      tags:
+      - news
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/News'
+          description: ''
+  /api/v1/operations/:
+    get:
+      operationId: operations_list
+      parameters:
+      - in: query
+        name: currency
+        schema:
+          type: string
+        description: Filter by currency (EUR, USD, RUB)
+        required: true
+      - in: query
+        name: max_date
+        schema:
+          type: string
+        description: Filter by minimum date (YYYY-MM-DD)
+      - in: query
+        name: min_date
+        schema:
+          type: string
+        description: Filter by maximum date (YYYY-MM-DD)
+      tags:
+      - operations
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Operation'
+          description: ''
+  /api/v1/orders/:
+    get:
+      operationId: orders_list
+      parameters:
+      - in: query
+        name: country
+        schema:
+          type: array
+          items:
+            type: string
+        description: Несколько значений могут быть разделены запятыми.
+        explode: false
+        style: form
+      - in: query
+        name: executor
+        schema:
+          type: string
+      - in: query
+        name: executor_count
+        schema:
+          type: integer
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: price_max
+        schema:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+      - in: query
+        name: price_min
+        schema:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+      - in: query
+        name: specialization
+        schema:
+          type: array
+          items:
+            type: string
+        description: Несколько значений могут быть разделены запятыми.
+        explode: false
+        style: form
+      tags:
+      - orders
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOrderListList'
+          description: ''
+    post:
+      operationId: orders_create
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderCreate'
+          description: ''
+  /api/v1/orders/{slug}/:
+    get:
+      operationId: orders_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+          description: ''
+    put:
+      operationId: orders_update
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrderDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrderDetail'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+          description: ''
+    patch:
+      operationId: orders_partial_update
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOrderDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedOrderDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedOrderDetail'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+          description: ''
+    delete:
+      operationId: orders_destroy
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/orders/{slug}/change_executor_status/:
+    patch:
+      operationId: orders_change_executor_status_partial_update
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOrderList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedOrderList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedOrderList'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderList'
+          description: ''
+  /api/v1/orders/{slug}/enroll/:
+    post:
+      operationId: orders_enroll_create
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrderList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrderList'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderList'
+          description: ''
+  /api/v1/orders/{slug}/review/:
+    post:
+      operationId: orders_review_create
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrderList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrderList'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderList'
+          description: ''
+  /api/v1/orders/comment/{id}:
+    get:
+      operationId: orders_comment_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - orders
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseComment'
+          description: ''
+  /api/v1/orders/comment/create:
+    post:
+      operationId: orders_comment_create_create
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderResponseCommentCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrderResponseCommentCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrderResponseCommentCreate'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseCommentCreate'
+          description: ''
+  /api/v1/payment/advcash-callback/:
+    post:
+      operationId: payment_advcash_callback_create
+      tags:
+      - payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdvCashDepositFundsCallback'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdvCashDepositFundsCallback'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdvCashDepositFundsCallback'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvCashDepositFundsCallback'
+          description: ''
+  /api/v1/payment/operation/transfer/agregator/{method}/:
+    get:
+      operationId: payment_operation_transfer_agregator_list
+      parameters:
+      - in: path
+        name: method
+        schema:
+          type: string
+        required: true
+      tags:
+      - payment
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentAgregator'
+          description: ''
+  /api/v1/payment/operation/transfer/currency/:
+    get:
+      operationId: payment_operation_transfer_currency_list
+      tags:
+      - payment
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Currency'
+          description: ''
+  /api/v1/payment/operation/transfer/method/{currency}/:
+    get:
+      operationId: payment_operation_transfer_method_list
+      parameters:
+      - in: path
+        name: currency
+        schema:
+          type: string
+        required: true
+      tags:
+      - payment
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentMethod'
+          description: ''
+  /api/v1/payment/operation/transfer/to_bank_card/request/:
+    post:
+      operationId: payment_operation_transfer_to_bank_card_request_create
+      tags:
+      - payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WithdrawFunds'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WithdrawFunds'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WithdrawFunds'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawFunds'
+          description: ''
+  /api/v1/payment/operation/transfer/to_ecurrency/request/:
+    post:
+      operationId: payment_operation_transfer_to_ecurrency_request_create
+      tags:
+      - payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WithdrawalEcurrency'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WithdrawalEcurrency'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WithdrawalEcurrency'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawalEcurrency'
+          description: ''
+  /api/v1/payment/operation/transferuser/:
+    post:
+      operationId: payment_operation_transferuser_create
+      tags:
+      - payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferMoneyToUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TransferMoneyToUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TransferMoneyToUser'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferMoneyToUser'
+          description: ''
+  /api/v1/personal-account/:
+    get:
+      operationId: personal_account_list
+      tags:
+      - personal-account
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomUserPersonalAccount'
+          description: ''
+    post:
+      operationId: personal_account_create
+      tags:
+      - personal-account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomUserPersonalAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomUserPersonalAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomUserPersonalAccount'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUserPersonalAccount'
+          description: ''
+  /api/v1/personal-account/{id}/:
+    get:
+      operationId: personal_account_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this пользователь.
+        required: true
+      tags:
+      - personal-account
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUserPersonalAccount'
+          description: ''
+    put:
+      operationId: personal_account_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this пользователь.
+        required: true
+      tags:
+      - personal-account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomUserPersonalAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomUserPersonalAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomUserPersonalAccount'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUserPersonalAccount'
+          description: ''
+    patch:
+      operationId: personal_account_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this пользователь.
+        required: true
+      tags:
+      - personal-account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUserPersonalAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUserPersonalAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUserPersonalAccount'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUserPersonalAccount'
+          description: ''
+    delete:
+      operationId: personal_account_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this пользователь.
+        required: true
+      tags:
+      - personal-account
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/rating/:
+    get:
+      operationId: rating_retrieve
+      tags:
+      - rating
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rating'
+          description: ''
+    patch:
+      operationId: rating_partial_update
+      tags:
+      - rating
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRating'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRating'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRating'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rating'
+          description: ''
+  /api/v1/referal-link/:
+    get:
+      operationId: referal_link_retrieve
+      tags:
+      - referal-link
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferalLink'
+          description: ''
+    put:
+      operationId: referal_link_update
+      tags:
+      - referal-link
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReferalLink'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ReferalLink'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReferalLink'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferalLink'
+          description: ''
+    patch:
+      operationId: referal_link_partial_update
+      tags:
+      - referal-link
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReferalLink'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReferalLink'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReferalLink'
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferalLink'
+          description: ''
+  /api/v1/region/:
+    get:
+      operationId: region_list
+      tags:
+      - region
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Region'
+          description: ''
+  /api/v1/region/{id}/:
+    get:
+      operationId: region_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Регион.
+        required: true
+      tags:
+      - region
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Region'
+          description: ''
+  /api/v1/register/{refer}/:
+    post:
+      operationId: register_create
+      description: Регистрация пользователя. Нужно передать email, password
+      parameters:
+      - in: path
+        name: refer
+        schema:
+          type: string
+        required: true
+      tags:
+      - register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+              examples:
+                GreatExample:
+                  value:
+                    Status: true
+                  summary: Great example
+          description: Request successful.
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+              examples:
+                BadExample3:
+                  value:
+                    Status: false
+                    Errors:
+                      password: easy password
+                  summary: Bad example 3
+                BadExample4:
+                  value:
+                    Status: false
+                    Errors:
+                      field: string
+                  summary: Bad example 4
+          description: Request successful.
+  /api/v1/resetpassword/:
+    post:
+      operationId: resetpassword_create
+      tags:
+      - resetpassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordLinkRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordLinkRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordLinkRequest'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+              examples:
+                GreatExample:
+                  value:
+                    Status: true
+                  summary: Great example
+          description: Request successful.
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+          description: Request failed.
+  /api/v1/resetpassword-confirm/:
+    post:
+      operationId: resetpassword_confirm_create
+      tags:
+      - resetpassword-confirm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+              examples:
+                GreatExample:
+                  value:
+                    Status: true
+                  summary: Great example
+          description: Request successful.
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+              examples:
+                BadExample:
+                  value:
+                    Status: false
+                    Errors: Срок действия токена истек и он был удален
+                  summary: Bad example
+                BadExample2:
+                  value:
+                    Status: false
+                    Errors: Неверный uid или токен
+                  summary: Bad example 2
+                BadExample3:
+                  value:
+                    Status: false
+                    Errors:
+                      password: easy password
+                  summary: Bad example 3
+                BadExample4:
+                  value:
+                    Status: false
+                    Errors: Не указаны все необходимые аргументы
+                  summary: Bad example 4
+                BadExample5:
+                  value:
+                    Status: false
+                    Errors: Пароль должен быть строкой
+                  summary: Bad example 5
+          description: Request failed.
+  /api/v1/resetpassword/link{uidb64}/{token}/:
+    get:
+      operationId: resetpassword_link_retrieve
+      parameters:
+      - in: path
+        name: token
+        schema:
+          type: string
+        description: Токен подтверждения почты (подставляется из url при нажатии пользователем
+          на ссылку)
+        required: true
+      - in: path
+        name: uidb64
+        schema:
+          type: string
+        description: Зашифрованный id пользователя (подставляется из url при нажатии
+          пользователем на ссылку)
+        required: true
+      tags:
+      - resetpassword
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+              examples:
+                GreatExample:
+                  value:
+                    Status: true
+                    uid: string
+                    token: string
+                  summary: Great example
+          description: Request successful.
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomuserResponse'
+          description: Request failed.
+  /api/v1/reviews/{id}/:
+    get:
+      operationId: reviews_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reviews
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+  /api/v1/reviews/create/:
+    post:
+      operationId: reviews_create_create
+      tags:
+      - reviews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ReviewCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReviewCreate'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewCreate'
+          description: ''
+  /api/v1/reviews/destroy/{id}/:
+    delete:
+      operationId: reviews_destroy_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reviews
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/reviews/list/{executor_id}/:
+    get:
+      operationId: reviews_list_list
+      parameters:
+      - in: path
+        name: executor_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum:
+          - NT
+          - PT
+        description: |-
+          * `PT` - Positive
+          * `NT` - Negative
+
+          * `PT` - Positive
+          * `NT` - Negative
+      tags:
+      - reviews
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+          description: ''
+  /api/v1/reviews/update/{id}/:
+    put:
+      operationId: reviews_update_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reviews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ReviewUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReviewUpdate'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewUpdate'
+          description: ''
+    patch:
+      operationId: reviews_update_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reviews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewUpdate'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewUpdate'
+          description: ''
+  /api/v1/threads/:
+    get:
+      operationId: threads_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      tags:
+      - threads
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Thread'
+          description: ''
+    post:
+      operationId: threads_create
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Thread'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Thread'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Thread'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thread'
+          description: ''
+  /api/v1/threads/{id}/:
+    get:
+      operationId: threads_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Тред.
+        required: true
+      tags:
+      - threads
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thread'
+          description: ''
+  /api/v1/threads/{thread_id}/comments/:
+    get:
+      operationId: threads_comments_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: path
+        name: thread_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - threads
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+          description: ''
+    post:
+      operationId: threads_comments_create
+      parameters:
+      - in: path
+        name: thread_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Comment'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+  /api/v1/threads/{thread_id}/comments/{id}/:
+    get:
+      operationId: threads_comments_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Комментарий.
+        required: true
+      - in: path
+        name: thread_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - threads
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+  /api/v1/tickets/:
+    get:
+      operationId: tickets_list
+      tags:
+      - tickets
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticket'
+          description: ''
+  /api/v1/tickets/{id}/:
+    get:
+      operationId: tickets_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this ticket.
+        required: true
+      tags:
+      - tickets
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+          description: ''
+  /api/v1/user-specialization/:
+    get:
+      operationId: user_specialization_list
+      tags:
+      - user-specialization
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSpecialization'
+          description: ''
+    post:
+      operationId: user_specialization_create
+      tags:
+      - user-specialization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSpecialization'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserSpecialization'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserSpecialization'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSpecialization'
+          description: ''
+  /api/v1/user-specialization/{id}/:
+    get:
+      operationId: user_specialization_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Специализация юзера.
+        required: true
+      tags:
+      - user-specialization
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSpecialization'
+          description: ''
+    put:
+      operationId: user_specialization_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Специализация юзера.
+        required: true
+      tags:
+      - user-specialization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSpecialization'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserSpecialization'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserSpecialization'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSpecialization'
+          description: ''
+    patch:
+      operationId: user_specialization_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Специализация юзера.
+        required: true
+      tags:
+      - user-specialization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserSpecialization'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserSpecialization'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserSpecialization'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSpecialization'
+          description: ''
+    delete:
+      operationId: user_specialization_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Специализация юзера.
+        required: true
+      tags:
+      - user-specialization
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/voiting/:
+    get:
+      operationId: voiting_list
+      tags:
+      - voiting
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QuestionVoite'
+          description: ''
+    post:
+      operationId: voiting_create
+      tags:
+      - voiting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionVoite'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/QuestionVoite'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/QuestionVoite'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionVoite'
+          description: ''
+  /api/v1/voiting/{id}/:
+    get:
+      operationId: voiting_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Вопрос.
+        required: true
+      tags:
+      - voiting
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionVoite'
+          description: ''
+    put:
+      operationId: voiting_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Вопрос.
+        required: true
+      tags:
+      - voiting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionVoite'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/QuestionVoite'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/QuestionVoite'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionVoite'
+          description: ''
+    patch:
+      operationId: voiting_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Вопрос.
+        required: true
+      tags:
+      - voiting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedQuestionVoite'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedQuestionVoite'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedQuestionVoite'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionVoite'
+          description: ''
+    delete:
+      operationId: voiting_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Вопрос.
+        required: true
+      tags:
+      - voiting
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/works/{id}/:
+    get:
+      operationId: works_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - works
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+          description: ''
+  /api/v1/works/create/:
+    post:
+      operationId: works_create_create
+      tags:
+      - works
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WorkCreate'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkCreate'
+          description: ''
+  /api/v1/works/current/{id}/:
+    get:
+      operationId: works_current_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - works
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentWork'
+          description: ''
+  /api/v1/works/current/create/:
+    post:
+      operationId: works_current_create_create
+      tags:
+      - works
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurrentWorkCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CurrentWorkCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CurrentWorkCreate'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentWorkCreate'
+          description: ''
+  /api/v1/works/current/destroy/{id}/:
+    delete:
+      operationId: works_current_destroy_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - works
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/works/current/list/{user_id}/:
+    get:
+      operationId: works_current_list_list
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - works
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CurrentWork'
+          description: ''
+  /api/v1/works/current/update/{id}/:
+    put:
+      operationId: works_current_update_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - works
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurrentWorkUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CurrentWorkUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CurrentWorkUpdate'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentWorkUpdate'
+          description: ''
+    patch:
+      operationId: works_current_update_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - works
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCurrentWorkUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCurrentWorkUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCurrentWorkUpdate'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentWorkUpdate'
+          description: ''
+  /api/v1/works/destroy/{id}/:
+    delete:
+      operationId: works_destroy_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - works
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/works/list/{user_id}/:
+    get:
+      operationId: works_list_list
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - works
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Work'
+          description: ''
+  /api/v1/works/update/{id}/:
+    put:
+      operationId: works_update_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - works
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WorkUpdate'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkUpdate'
+          description: ''
+    patch:
+      operationId: works_update_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - works
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkUpdate'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkUpdate'
+          description: ''
+components:
+  schemas:
+    Activity:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+        slug:
+          type: string
+          maxLength: 55
+          pattern: ^[-a-zA-Z0-9_]+$
+      required:
+      - id
+      - name
+      - slug
+    AdvCashDepositFundsCallback:
+      type: object
+      properties:
+        ac_account_email:
+          type: string
+          format: email
+        ac_sci_name:
+          type: string
+          maxLength: 255
+        ac_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        ac_currency:
+          type: string
+          maxLength: 5
+        ac_sign:
+          type: string
+          maxLength: 512
+      required:
+      - ac_account_email
+      - ac_amount
+      - ac_currency
+      - ac_sci_name
+      - ac_sign
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 1000
+      required:
+      - id
+      - name
+    BankAccount:
+      type: object
+      properties:
+        bank_name:
+          type: string
+          nullable: true
+          title: Наименование банка
+          maxLength: 255
+        bank_address:
+          type: string
+          nullable: true
+          title: Адрес банка
+          maxLength: 255
+        bank_bic:
+          type: string
+          nullable: true
+          title: БИК банка
+          maxLength: 55
+        bank_correspondent_account:
+          type: string
+          nullable: true
+          title: Корреспондентский счет банка
+          maxLength: 55
+        payment_account:
+          type: string
+          nullable: true
+          title: Расчетный счет
+          maxLength: 55
+        recipients_name:
+          type: string
+          title: Имя получателя платежа
+          maxLength: 255
+        user:
+          type: integer
+          readOnly: true
+      required:
+      - user
+    BlankEnum:
+      enum:
+      - ''
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        slug:
+          type: string
+          maxLength: 55
+          pattern: ^[-a-zA-Z0-9_]+$
+        user_count:
+          type: integer
+          readOnly: true
+        activity:
+          allOf:
+          - $ref: '#/components/schemas/Activity'
+          readOnly: true
+      required:
+      - activity
+      - id
+      - name
+      - slug
+      - user_count
+    Chat:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+          title: 'Название чат комнаты:'
+        user_1:
+          allOf:
+          - $ref: '#/components/schemas/ChatUser'
+          readOnly: true
+        user_2:
+          allOf:
+          - $ref: '#/components/schemas/ChatUser'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: 'Время создания комнаты:'
+        messages:
+          type: object
+          additionalProperties:
+            oneOf:
+            - type: object
+              additionalProperties: {}
+            - type: string
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - messages
+      - name
+      - user_1
+      - user_2
+    ChatUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+        last_name:
+          type: string
+      required:
+      - first_name
+      - id
+      - last_name
+    Comment:
+      type: object
+      properties:
+        thread:
+          type: integer
+          readOnly: true
+          title: 'Тред:'
+        text:
+          type: string
+          title: 'Текст комментария:'
+          maxLength: 400
+        comment:
+          type: integer
+          nullable: true
+          title: 'Главный комментарий:'
+        commentator:
+          allOf:
+          - $ref: '#/components/schemas/ChatUser'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: 'Время создания комментария:'
+      required:
+      - commentator
+      - created_at
+      - text
+      - thread
+    CompanyDoc:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 155
+        desc:
+          type: string
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        file:
+          type: string
+          format: uri
+      required:
+      - id
+      - name
+      - slug
+    Contract:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+      required:
+      - id
+    Country:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+        phone_code:
+          type: string
+          nullable: true
+          maxLength: 15
+        flag:
+          type: string
+          format: uri
+          nullable: true
+        region:
+          allOf:
+          - $ref: '#/components/schemas/Region'
+          readOnly: true
+      required:
+      - id
+      - name
+      - region
+    CountryOrder:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+      required:
+      - id
+      - name
+    Currency:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Валюта
+          maxLength: 150
+      required:
+      - id
+      - name
+    Currency068Enum:
+      enum:
+      - RUB
+      - USD
+      type: string
+      description: |-
+        * `RUB` - RUB
+        * `USD` - USD
+    Currency93dEnum:
+      enum:
+      - USD
+      - RUB
+      - EUR
+      type: string
+      description: |-
+        * `USD` - $
+        * `RUB` - Р
+        * `EUR` - €
+    CurrentWork:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        order:
+          $ref: '#/components/schemas/OrderDetail'
+        title:
+          type: string
+          title: Заголовок
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Обложка
+          pattern: (?:png|jpg)$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата создания
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,2})?$
+          nullable: true
+          title: Стоимость
+        price_currency:
+          nullable: true
+          title: Валюта
+          oneOf:
+          - $ref: '#/components/schemas/PriceCurrencyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        link:
+          type: string
+          nullable: true
+          title: Ссылка
+          maxLength: 255
+        video:
+          type: string
+          nullable: true
+          title: Видео
+          maxLength: 255
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+        file4:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл4
+        category:
+          type: integer
+          nullable: true
+          title: Категория
+        time_spend:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          title: Потраченное время в часах
+        table_place:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          title: Место в таблице
+      required:
+      - created_at
+      - description
+      - id
+      - order
+      - title
+    CurrentWorkCreate:
+      type: object
+      properties:
+        order:
+          type: integer
+          title: Выполненный заказ
+        title:
+          type: string
+          title: Заголовок
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Обложка
+          pattern: (?:png|jpg)$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата создания
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,2})?$
+          nullable: true
+          title: Стоимость
+        price_currency:
+          nullable: true
+          title: Валюта
+          oneOf:
+          - $ref: '#/components/schemas/PriceCurrencyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        link:
+          type: string
+          nullable: true
+          title: Ссылка
+          maxLength: 255
+        video:
+          type: string
+          nullable: true
+          title: Видео
+          maxLength: 255
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+        file4:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл4
+        category:
+          type: integer
+          nullable: true
+          title: Категория
+        time_spend:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          title: Потраченное время в часах
+        table_place:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          title: Место в таблице
+      required:
+      - created_at
+      - description
+      - order
+      - title
+    CurrentWorkUpdate:
+      type: object
+      properties:
+        order:
+          type: integer
+          title: Выполненный заказ
+        title:
+          type: string
+          title: Заголовок
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Обложка
+          pattern: (?:png|jpg)$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата создания
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,2})?$
+          nullable: true
+          title: Стоимость
+        price_currency:
+          nullable: true
+          title: Валюта
+          oneOf:
+          - $ref: '#/components/schemas/PriceCurrencyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        link:
+          type: string
+          nullable: true
+          title: Ссылка
+          maxLength: 255
+        video:
+          type: string
+          nullable: true
+          title: Видео
+          maxLength: 255
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+        file4:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл4
+        category:
+          type: integer
+          nullable: true
+          title: Категория
+        time_spend:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          title: Потраченное время в часах
+        table_place:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          title: Место в таблице
+      required:
+      - created_at
+      - description
+      - order
+      - title
+    CustomUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          title: Адрес электронной почты
+          maxLength: 254
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusE6aEnum'
+          title: Статус
+        referal_link:
+          type: string
+          title: Реферальная ссылка
+          maxLength: 150
+        rub_acc:
+          type: integer
+          title: Счет RUB
+        usd_acc:
+          type: integer
+          title: Счет USD
+        eur_acc:
+          type: integer
+          title: Счет EUR
+        time_registered:
+          type: string
+          format: date
+          readOnly: true
+      required:
+      - email
+      - id
+      - time_registered
+    CustomUserList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          title: Ник пользователя
+          maxLength: 55
+        rating:
+          type: integer
+          readOnly: true
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusE6aEnum'
+          title: Статус
+        email_confirm:
+          type: boolean
+          title: Почта подтверждена
+        email:
+          type: string
+          format: email
+          title: Адрес электронной почты
+          maxLength: 254
+        orders:
+          type: integer
+          readOnly: true
+        negative_reviews:
+          type: integer
+          readOnly: true
+        positive_reviews:
+          type: integer
+          readOnly: true
+        slug:
+          type: string
+          maxLength: 155
+          pattern: ^[-a-zA-Z0-9_]+$
+        legal_status:
+          allOf:
+          - $ref: '#/components/schemas/LegalStatusEnum'
+          title: Юридический статус
+        time_registered:
+          type: string
+          format: date
+          readOnly: true
+        contests:
+          type: integer
+          readOnly: true
+        user_info:
+          type: object
+          additionalProperties:
+            oneOf:
+            - type: object
+              additionalProperties: {}
+            - type: string
+          readOnly: true
+        portfolio:
+          type: object
+          additionalProperties:
+            oneOf:
+            - type: object
+              additionalProperties: {}
+            - type: string
+          readOnly: true
+      required:
+      - contests
+      - email
+      - id
+      - negative_reviews
+      - orders
+      - portfolio
+      - positive_reviews
+      - rating
+      - time_registered
+      - user_info
+    CustomUserPersonalAccount:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          title: Ник пользователя
+          maxLength: 55
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Адрес электронной почты
+        founder:
+          type: boolean
+          readOnly: true
+          title: Основатель
+        rub_account:
+          type: string
+          readOnly: true
+        rub_balance:
+          type: string
+          readOnly: true
+        usd_account:
+          type: string
+          readOnly: true
+        usd_balance:
+          type: string
+          readOnly: true
+        eur_account:
+          type: string
+          readOnly: true
+        eur_balance:
+          type: string
+          readOnly: true
+        user_info:
+          $ref: '#/components/schemas/UserInfo'
+        user_docs:
+          $ref: '#/components/schemas/UserDocs'
+        user_bank:
+          type: array
+          items:
+            $ref: '#/components/schemas/BankAccount'
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusE6aEnum'
+          title: Статус
+        legal_status:
+          allOf:
+          - $ref: '#/components/schemas/LegalStatusEnum'
+          title: Юридический статус
+        paid_entrance_rub:
+          type: boolean
+          title: Оплатил вступительный взнос в RUB
+        paid_entrance_usd:
+          type: boolean
+          title: Оплатил вступительный взнос в USD
+        paid_entrance_eur:
+          type: boolean
+          title: Оплатил вступительный взнос в EUR
+      required:
+      - email
+      - eur_account
+      - eur_balance
+      - founder
+      - id
+      - rub_account
+      - rub_balance
+      - usd_account
+      - usd_balance
+      - user_bank
+    CustomuserResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        errors:
+          type: string
+        uid:
+          type: string
+        token:
+          type: string
+      required:
+      - errors
+      - status
+      - token
+      - uid
+    ExecutorStatusEnum:
+      enum:
+      - NS
+      - CN
+      - EX
+      type: string
+      description: |-
+        * `NS` - No_Status
+        * `CN` - Candidate
+        * `EX` - Executor
+    LegalStatusEnum:
+      enum:
+      - PS
+      - LG
+      type: string
+      description: |-
+        * `PS` - Physical
+        * `LG` - Legal
+    LoginUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          title: Адрес электронной почты
+          maxLength: 254
+        password:
+          type: string
+          title: Пароль
+          maxLength: 128
+      required:
+      - email
+      - id
+      - password
+    MailPermission:
+      type: object
+      properties:
+        account_refill:
+          type: boolean
+          title: 'Увед. о пополнении аккаунта:'
+        customers_offers:
+          type: boolean
+          title: 'Увед. о предложениях заказчиков:'
+        freelancers_responses:
+          type: boolean
+          title: 'Увед. об откликах заказчиков:'
+        reviews:
+          type: boolean
+          title: 'Увед. об отзывах:'
+        votes:
+          type: boolean
+          title: 'Увед. о голосованиях:'
+        chat:
+          type: boolean
+          title: 'Увед. о пополнении аккаунта:'
+        news:
+          type: boolean
+          title: 'Увед. о пополнении аккаунта:'
+    Message:
+      type: object
+      properties:
+        sender:
+          type: integer
+          readOnly: true
+        message:
+          type: string
+          title: 'Текст сообщения:'
+          maxLength: 600
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: 'Дата отправки сообщения:'
+        room:
+          type: integer
+          readOnly: true
+          title: 'Комната:'
+      required:
+      - created_at
+      - message
+      - room
+      - sender
+    News:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          title: Заголовок
+          maxLength: 150
+        text:
+          type: string
+          title: Текст
+          maxLength: 1500
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата создания
+        is_read:
+          type: boolean
+          readOnly: true
+      required:
+      - created
+      - id
+      - is_read
+      - text
+      - title
+    NullEnum:
+      enum:
+      - null
+    Operation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        from_account:
+          type: integer
+          title: Счёт списания
+        to_account:
+          type: integer
+          title: Счёт зачисления
+        value:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          title: Сумма
+        purpose_of_payment:
+          type: string
+          title: Назначение платежа
+          maxLength: 100
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency068Enum'
+          title: Валюта операции
+        time_operation:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Время операции
+      required:
+      - from_account
+      - id
+      - purpose_of_payment
+      - time_operation
+      - to_account
+      - value
+    OrderCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+        description:
+          type: string
+        price:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency068Enum'
+          title: Валюта цены заказа
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        specialization_id:
+          type: integer
+        period:
+          type: string
+          format: date
+        slug:
+          type: string
+          readOnly: true
+          pattern: ^[-a-zA-Z0-9_]+$
+        target_audience:
+          type: string
+          title: Целевая аудитория
+          maxLength: 300
+        atention:
+          type: string
+          title: Обратить внимание
+          maxLength: 300
+        status:
+          $ref: '#/components/schemas/OrderCreateStatusEnum'
+        customer:
+          type: integer
+          readOnly: true
+          title: Заказчик
+        file1:
+          type: string
+          format: uri
+          nullable: true
+        file2:
+          type: string
+          format: uri
+          nullable: true
+        file3:
+          type: string
+          format: uri
+          nullable: true
+        country:
+          type: array
+          items:
+            $ref: '#/components/schemas/CountryOrder'
+      required:
+      - country
+      - created_at
+      - customer
+      - description
+      - id
+      - name
+      - slug
+      - specialization_id
+    OrderCreateStatusEnum:
+      enum:
+      - MD
+      - PB
+      - AC
+      - OE
+      - OA
+      - CP
+      type: string
+      description: |-
+        * `MD` - Moderation
+        * `PB` - Published
+        * `AC` - Accepted
+        * `OE` - On_Execution
+        * `OA` - On_Accepted
+        * `CP` - Comleted
+    OrderCustomUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Адрес электронной почты
+        username:
+          type: string
+          readOnly: true
+          title: Ник пользователя
+        user_info:
+          $ref: '#/components/schemas/UserInfoOrder'
+      required:
+      - email
+      - id
+      - user_info
+      - username
+    OrderDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          type: string
+        specialization:
+          allOf:
+          - $ref: '#/components/schemas/Specialization'
+          readOnly: true
+        price:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency068Enum'
+          title: Валюта цены заказа
+        customer:
+          allOf:
+          - $ref: '#/components/schemas/OrderCustomUser'
+          readOnly: true
+        executor:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderExecutor'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        target_audience:
+          type: string
+          title: Целевая аудитория
+          maxLength: 300
+        atention:
+          type: string
+          title: Обратить внимание
+          maxLength: 300
+        file1:
+          type: string
+          format: uri
+          nullable: true
+        file2:
+          type: string
+          format: uri
+          nullable: true
+        file3:
+          type: string
+          format: uri
+          nullable: true
+        period:
+          type: string
+          format: date
+          nullable: true
+          title: Срок выполнения
+      required:
+      - created_at
+      - customer
+      - description
+      - executor
+      - id
+      - name
+      - slug
+      - specialization
+    OrderExecutor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        executor:
+          $ref: '#/components/schemas/OrderCustomUser'
+        executor_status:
+          $ref: '#/components/schemas/ExecutorStatusEnum'
+        text:
+          type: string
+          nullable: true
+          title: Текст отклика
+          maxLength: 500
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+          title: Стоимость выполнения
+        term:
+          type: string
+          format: date
+          nullable: true
+          title: Срок выполнения
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата отклика
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+        order_response_comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderResponseComment'
+      required:
+      - created_at
+      - executor
+      - id
+      - order_response_comments
+    OrderList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          type: string
+        specialization:
+          allOf:
+          - $ref: '#/components/schemas/Specialization'
+          readOnly: true
+        price:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency068Enum'
+          title: Валюта цены заказа
+        customer:
+          allOf:
+          - $ref: '#/components/schemas/OrderCustomUser'
+          readOnly: true
+        time_since_created:
+          type: string
+          format: date-time
+          readOnly: true
+        executor_count:
+          type: integer
+          readOnly: true
+        period_execution:
+          type: string
+          format: date
+          readOnly: true
+        views:
+          type: integer
+          readOnly: true
+        annotated_comments:
+          type: integer
+          readOnly: true
+      required:
+      - annotated_comments
+      - customer
+      - description
+      - executor_count
+      - id
+      - name
+      - period_execution
+      - slug
+      - specialization
+      - time_since_created
+      - views
+    OrderResponseComment:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+          maxLength: 500
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+          title: Оставил комметарий
+        order_response:
+          type: integer
+          title: Отклик
+        replies:
+          type: array
+          items: {}
+          readOnly: true
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+      required:
+      - created_at
+      - id
+      - order_response
+      - replies
+      - text
+      - user
+    OrderResponseCommentCreate:
+      type: object
+      properties:
+        text:
+          type: string
+          maxLength: 500
+        order_response:
+          type: integer
+          title: Отклик
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+      required:
+      - order_response
+      - text
+    OrderReview:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          type: string
+        specialization:
+          $ref: '#/components/schemas/Specialization'
+        price:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency068Enum'
+          title: Валюта цены заказа
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        target_audience:
+          type: string
+          title: Целевая аудитория
+          maxLength: 300
+        atention:
+          type: string
+          title: Обратить внимание
+          maxLength: 300
+        file1:
+          type: string
+          format: uri
+          nullable: true
+        file2:
+          type: string
+          format: uri
+          nullable: true
+        file3:
+          type: string
+          format: uri
+          nullable: true
+        period:
+          type: string
+          format: date
+          nullable: true
+          title: Срок выполнения
+      required:
+      - created_at
+      - description
+      - id
+      - name
+      - slug
+      - specialization
+    PaginatedCustomUserListList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomUserList'
+    PaginatedOrderListList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderList'
+    PatchedContract:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+    PatchedCurrentWorkUpdate:
+      type: object
+      properties:
+        order:
+          type: integer
+          title: Выполненный заказ
+        title:
+          type: string
+          title: Заголовок
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Обложка
+          pattern: (?:png|jpg)$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата создания
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,2})?$
+          nullable: true
+          title: Стоимость
+        price_currency:
+          nullable: true
+          title: Валюта
+          oneOf:
+          - $ref: '#/components/schemas/PriceCurrencyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        link:
+          type: string
+          nullable: true
+          title: Ссылка
+          maxLength: 255
+        video:
+          type: string
+          nullable: true
+          title: Видео
+          maxLength: 255
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+        file4:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл4
+        category:
+          type: integer
+          nullable: true
+          title: Категория
+        time_spend:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          title: Потраченное время в часах
+        table_place:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          title: Место в таблице
+    PatchedCustomUserPersonalAccount:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          title: Ник пользователя
+          maxLength: 55
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Адрес электронной почты
+        founder:
+          type: boolean
+          readOnly: true
+          title: Основатель
+        rub_account:
+          type: string
+          readOnly: true
+        rub_balance:
+          type: string
+          readOnly: true
+        usd_account:
+          type: string
+          readOnly: true
+        usd_balance:
+          type: string
+          readOnly: true
+        eur_account:
+          type: string
+          readOnly: true
+        eur_balance:
+          type: string
+          readOnly: true
+        user_info:
+          $ref: '#/components/schemas/UserInfo'
+        user_docs:
+          $ref: '#/components/schemas/UserDocs'
+        user_bank:
+          type: array
+          items:
+            $ref: '#/components/schemas/BankAccount'
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusE6aEnum'
+          title: Статус
+        legal_status:
+          allOf:
+          - $ref: '#/components/schemas/LegalStatusEnum'
+          title: Юридический статус
+        paid_entrance_rub:
+          type: boolean
+          title: Оплатил вступительный взнос в RUB
+        paid_entrance_usd:
+          type: boolean
+          title: Оплатил вступительный взнос в USD
+        paid_entrance_eur:
+          type: boolean
+          title: Оплатил вступительный взнос в EUR
+    PatchedMailPermission:
+      type: object
+      properties:
+        account_refill:
+          type: boolean
+          title: 'Увед. о пополнении аккаунта:'
+        customers_offers:
+          type: boolean
+          title: 'Увед. о предложениях заказчиков:'
+        freelancers_responses:
+          type: boolean
+          title: 'Увед. об откликах заказчиков:'
+        reviews:
+          type: boolean
+          title: 'Увед. об отзывах:'
+        votes:
+          type: boolean
+          title: 'Увед. о голосованиях:'
+        chat:
+          type: boolean
+          title: 'Увед. о пополнении аккаунта:'
+        news:
+          type: boolean
+          title: 'Увед. о пополнении аккаунта:'
+    PatchedOrderDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          type: string
+        specialization:
+          allOf:
+          - $ref: '#/components/schemas/Specialization'
+          readOnly: true
+        price:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency068Enum'
+          title: Валюта цены заказа
+        customer:
+          allOf:
+          - $ref: '#/components/schemas/OrderCustomUser'
+          readOnly: true
+        executor:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderExecutor'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        target_audience:
+          type: string
+          title: Целевая аудитория
+          maxLength: 300
+        atention:
+          type: string
+          title: Обратить внимание
+          maxLength: 300
+        file1:
+          type: string
+          format: uri
+          nullable: true
+        file2:
+          type: string
+          format: uri
+          nullable: true
+        file3:
+          type: string
+          format: uri
+          nullable: true
+        period:
+          type: string
+          format: date
+          nullable: true
+          title: Срок выполнения
+    PatchedOrderList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          type: string
+        specialization:
+          allOf:
+          - $ref: '#/components/schemas/Specialization'
+          readOnly: true
+        price:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency068Enum'
+          title: Валюта цены заказа
+        customer:
+          allOf:
+          - $ref: '#/components/schemas/OrderCustomUser'
+          readOnly: true
+        time_since_created:
+          type: string
+          format: date-time
+          readOnly: true
+        executor_count:
+          type: integer
+          readOnly: true
+        period_execution:
+          type: string
+          format: date
+          readOnly: true
+        views:
+          type: integer
+          readOnly: true
+        annotated_comments:
+          type: integer
+          readOnly: true
+    PatchedQuestionVoite:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+          maxLength: 300
+        pub_date:
+          type: string
+          format: date-time
+          readOnly: true
+        voites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voite'
+    PatchedRating:
+      type: object
+      properties:
+        reg_time:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Время пошедшее с момента регистрации
+          description: поле можно оставить пустым
+        orders:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во заказов:'
+          description: поле можно оставить пустым
+        contest:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во учрежденных или посещенных контестов:'
+          description: поле можно оставить пустым
+        peace_orders:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во мировых соглашений:'
+          description: поле можно оставить пустым
+        arbit:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во арбитражей:'
+          description: поле можно оставить пустым
+        wins:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во побед в контестах:'
+          description: поле можно оставить пустым
+        reviews:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во отзывов:'
+          description: поле можно оставить пустым
+        reply_time:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Продолжительность ответа на оффер:'
+          description: поле можно оставить пустым
+        vote_participation:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Участие в голосованиях:'
+          description: поле можно оставить пустым
+        freelancer:
+          type: integer
+          writeOnly: true
+          title: 'Фрилансер:'
+          description: выберите подходящий user instance
+        summary:
+          type: string
+          readOnly: true
+    PatchedReferalLink:
+      type: object
+      properties:
+        referal_link:
+          type: string
+          readOnly: true
+          title: 'Ссылка:'
+        user:
+          type: integer
+          readOnly: true
+          title: 'Владелец ссылки:'
+    PatchedReviewUpdate:
+      type: object
+      properties:
+        description:
+          type: string
+          maxLength: 500
+        status:
+          $ref: '#/components/schemas/StatusDe3Enum'
+    PatchedUserInfoCompany:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        employee_position:
+          type: string
+          title: Должность представитля
+          maxLength: 100
+        company_name:
+          type: string
+          title: Полное название компании
+          maxLength: 100
+        short_company_name:
+          type: string
+          title: Короткое название компании
+          maxLength: 100
+        ceo_name:
+          type: string
+          title: ФИО руководителя
+          maxLength: 150
+        ceo_post:
+          type: string
+          nullable: true
+          title: Должность руководителя
+          maxLength: 100
+        adress_in_law:
+          type: string
+          title: Юр. адрес
+          maxLength: 200
+        adress_fact:
+          type: string
+          title: Физ. адрес
+          maxLength: 200
+        reg_number:
+          type: string
+          title: ОГРН
+          maxLength: 50
+        company_number:
+          type: string
+          nullable: true
+          title: ИНН
+          maxLength: 30
+        kpp_number:
+          type: string
+          nullable: true
+          title: КПП
+          maxLength: 30
+        certificate:
+          type: string
+          nullable: true
+          title: Свидетельство номер
+          maxLength: 30
+        certificate_file:
+          type: string
+          format: uri
+          title: Свидетельство файл
+        company_site:
+          type: string
+          nullable: true
+          title: Сайт компании
+          maxLength: 80
+        company_phone:
+          type: string
+          title: Телефон компании
+          maxLength: 30
+        company_email:
+          type: string
+          title: Email компании
+          maxLength: 50
+        social_site:
+          type: string
+          nullable: true
+          title: Социальные сети
+          maxLength: 80
+    PatchedUserSpecialization:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        specialization:
+          $ref: '#/components/schemas/Specialization'
+        is_main:
+          type: boolean
+    PatchedWorkUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+          title: Заголовок
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Обложка
+          pattern: (?:png|jpg)$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата создания
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,2})?$
+          nullable: true
+          title: Стоимость
+        price_currency:
+          nullable: true
+          title: Валюта
+          oneOf:
+          - $ref: '#/components/schemas/PriceCurrencyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        table_place:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          title: Место в таблице
+        link:
+          type: string
+          nullable: true
+          title: Ссылка
+          maxLength: 255
+        video:
+          type: string
+          nullable: true
+          title: Видео
+          maxLength: 255
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+        file4:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл4
+        category:
+          type: integer
+          nullable: true
+          title: Категория
+        time_spend:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          title: Потраченное время в часах
+    PaymentAgregator:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Агрегатор платежа
+          maxLength: 150
+      required:
+      - id
+      - name
+    PaymentMethod:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Метод оплаты
+          maxLength: 150
+        comission:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,6})?$
+          title: Комиссия
+      required:
+      - comission
+      - id
+      - name
+    PriceCurrencyEnum:
+      enum:
+      - USD
+      - RUB
+      - EUR
+      type: string
+      description: |-
+        * `USD` - $
+        * `RUB` - Р
+        * `EUR` - €
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+        theme:
+          $ref: '#/components/schemas/Theme'
+      required:
+      - answers
+      - id
+      - name
+      - theme
+    QuestionVoite:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+          maxLength: 300
+        pub_date:
+          type: string
+          format: date-time
+          readOnly: true
+        voites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voite'
+      required:
+      - id
+      - pub_date
+      - text
+      - voites
+    Rating:
+      type: object
+      properties:
+        reg_time:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Время пошедшее с момента регистрации
+          description: поле можно оставить пустым
+        orders:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во заказов:'
+          description: поле можно оставить пустым
+        contest:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во учрежденных или посещенных контестов:'
+          description: поле можно оставить пустым
+        peace_orders:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во мировых соглашений:'
+          description: поле можно оставить пустым
+        arbit:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во арбитражей:'
+          description: поле можно оставить пустым
+        wins:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во побед в контестах:'
+          description: поле можно оставить пустым
+        reviews:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Кол-во отзывов:'
+          description: поле можно оставить пустым
+        reply_time:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Продолжительность ответа на оффер:'
+          description: поле можно оставить пустым
+        vote_participation:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: 'Участие в голосованиях:'
+          description: поле можно оставить пустым
+        freelancer:
+          type: integer
+          writeOnly: true
+          title: 'Фрилансер:'
+          description: выберите подходящий user instance
+        summary:
+          type: string
+          readOnly: true
+      required:
+      - freelancer
+      - summary
+    ReferalLink:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        specialization:
+          type: string
+          maxLength: 100
+        work_links:
+          type: string
+          maxLength: 400
+        file1:
+          type: string
+          format: uri
+          nullable: true
+        file2:
+          type: string
+          format: uri
+          nullable: true
+        file3:
+          type: string
+          format: uri
+          nullable: true
+        file4:
+          type: string
+          format: uri
+          nullable: true
+        file5:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - email
+      - name
+      - specialization
+    Region:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+      required:
+      - id
+      - name
+    RegisterUser:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          title: Адрес электронной почты
+          maxLength: 254
+        password:
+          type: string
+          title: Пароль
+          maxLength: 128
+        referal_link:
+          type: string
+          title: Реферальная ссылка
+          maxLength: 150
+      required:
+      - email
+      - password
+    ResetPassword:
+      type: object
+      properties:
+        new_password:
+          type: string
+        new_password2:
+          type: string
+      required:
+      - new_password
+      - new_password2
+    ResetPasswordLinkRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          title: Адрес электронной почты
+          maxLength: 254
+      required:
+      - email
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        description:
+          type: string
+          maxLength: 500
+        status:
+          $ref: '#/components/schemas/StatusDe3Enum'
+        order:
+          $ref: '#/components/schemas/OrderReview'
+        customer:
+          $ref: '#/components/schemas/CustomUser'
+        executor:
+          $ref: '#/components/schemas/CustomUser'
+      required:
+      - customer
+      - description
+      - executor
+      - id
+      - order
+    ReviewCreate:
+      type: object
+      properties:
+        description:
+          type: string
+          maxLength: 500
+        status:
+          $ref: '#/components/schemas/StatusDe3Enum'
+        order:
+          type: integer
+        customer:
+          type: integer
+          title: Заказчик
+        executor:
+          type: integer
+          title: Исполнитель
+      required:
+      - customer
+      - description
+      - executor
+      - order
+    ReviewUpdate:
+      type: object
+      properties:
+        description:
+          type: string
+          maxLength: 500
+        status:
+          $ref: '#/components/schemas/StatusDe3Enum'
+      required:
+      - description
+    Specialization:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        slug:
+          type: string
+          readOnly: true
+          pattern: ^[-a-zA-Z0-9_]+$
+        user_count:
+          type: integer
+          readOnly: true
+        category:
+          allOf:
+          - $ref: '#/components/schemas/Category'
+          readOnly: true
+      required:
+      - category
+      - id
+      - name
+      - slug
+      - user_count
+    StatusDe3Enum:
+      enum:
+      - PT
+      - NT
+      type: string
+      description: |-
+        * `PT` - Positive
+        * `NT` - Negative
+    StatusE6aEnum:
+      enum:
+      - CS
+      - FR
+      - FC
+      - CC
+      type: string
+      description: |-
+        * `CS` - Customer
+        * `FR` - Freelancer
+        * `FC` - Freelancer_candidate
+        * `CC` - Customer_candidate
+    Theme:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+    Thread:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          title: 'Тема:'
+          maxLength: 150
+        text:
+          type: string
+          title: 'Текст обсуждения:'
+          maxLength: 400
+        creator:
+          allOf:
+          - $ref: '#/components/schemas/ChatUser'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: 'Время создания треда:'
+      required:
+      - created_at
+      - creator
+      - id
+      - text
+      - title
+    Ticket:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 300
+      required:
+      - name
+    TransferMoneyToUser:
+      type: object
+      properties:
+        currency:
+          type: string
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        to_account:
+          type: string
+      required:
+      - amount
+      - currency
+      - to_account
+    UserDocs:
+      type: object
+      properties:
+        document:
+          type: string
+          format: uri
+          title: Документ
+          pattern: (?:png|jpg|pdf)$
+        document_name:
+          type: string
+          title: Название документа
+          maxLength: 100
+        personal_number:
+          type: string
+          nullable: true
+          title: ИНН или персональный номер
+          maxLength: 17
+        document_number:
+          type: string
+          title: Серия или номер документа
+          maxLength: 55
+        document_issued:
+          type: string
+          title: Когда и кем выдан
+          maxLength: 255
+        user:
+          type: integer
+          readOnly: true
+      required:
+      - document_issued
+      - document_name
+      - user
+    UserInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        polzunok:
+          type: boolean
+        time_registered:
+          type: string
+          format: date
+          readOnly: true
+        first_name:
+          type: string
+          title: Имя
+          maxLength: 155
+        last_name:
+          type: string
+          title: Фамилия
+          maxLength: 155
+        father_name:
+          type: string
+          nullable: true
+          title: Отчество
+          maxLength: 155
+        avatar:
+          type: string
+          format: uri
+          nullable: true
+          title: Аватар
+        on_vacation:
+          type: boolean
+          title: Отпуск
+        phone_number:
+          type: string
+          title: Номер телефона
+          maxLength: 30
+        date_of_birth:
+          type: string
+          format: date
+          title: Дата рождения
+        cost_of_hour_work:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+          title: Стоимость часа работы
+        profile_description:
+          type: string
+          nullable: true
+          title: Описание профиля
+          maxLength: 1000
+        baner:
+          type: string
+          format: uri
+          nullable: true
+          title: Банер
+        adress:
+          type: string
+          title: Адрес проживания
+          maxLength: 200
+        skill:
+          type: string
+          nullable: true
+          title: Навыки
+        review_ratio:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          title: Звездность
+        user_specializations:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserSpecialization'
+        country:
+          $ref: '#/components/schemas/Country'
+        company:
+          $ref: '#/components/schemas/UserInfoCompany'
+        currency:
+          nullable: true
+          title: Валюта стоимости часа работ
+          oneOf:
+          - $ref: '#/components/schemas/Currency93dEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        experience:
+          type: string
+          nullable: true
+          title: 'Стаж:'
+          maxLength: 20
+      required:
+      - adress
+      - date_of_birth
+      - first_name
+      - id
+      - last_name
+      - phone_number
+      - time_registered
+    UserInfoCompany:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        employee_position:
+          type: string
+          title: Должность представитля
+          maxLength: 100
+        company_name:
+          type: string
+          title: Полное название компании
+          maxLength: 100
+        short_company_name:
+          type: string
+          title: Короткое название компании
+          maxLength: 100
+        ceo_name:
+          type: string
+          title: ФИО руководителя
+          maxLength: 150
+        ceo_post:
+          type: string
+          nullable: true
+          title: Должность руководителя
+          maxLength: 100
+        adress_in_law:
+          type: string
+          title: Юр. адрес
+          maxLength: 200
+        adress_fact:
+          type: string
+          title: Физ. адрес
+          maxLength: 200
+        reg_number:
+          type: string
+          title: ОГРН
+          maxLength: 50
+        company_number:
+          type: string
+          nullable: true
+          title: ИНН
+          maxLength: 30
+        kpp_number:
+          type: string
+          nullable: true
+          title: КПП
+          maxLength: 30
+        certificate:
+          type: string
+          nullable: true
+          title: Свидетельство номер
+          maxLength: 30
+        certificate_file:
+          type: string
+          format: uri
+          title: Свидетельство файл
+        company_site:
+          type: string
+          nullable: true
+          title: Сайт компании
+          maxLength: 80
+        company_phone:
+          type: string
+          title: Телефон компании
+          maxLength: 30
+        company_email:
+          type: string
+          title: Email компании
+          maxLength: 50
+        social_site:
+          type: string
+          nullable: true
+          title: Социальные сети
+          maxLength: 80
+      required:
+      - adress_fact
+      - adress_in_law
+      - ceo_name
+      - certificate_file
+      - company_email
+      - company_name
+      - company_phone
+      - employee_position
+      - id
+      - reg_number
+      - short_company_name
+    UserInfoOrder:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          title: Имя
+          maxLength: 155
+        last_name:
+          type: string
+          title: Фамилия
+          maxLength: 155
+        avatar:
+          type: string
+          format: uri
+          nullable: true
+          title: Аватар
+        company_name:
+          type: string
+          readOnly: true
+      required:
+      - company_name
+      - first_name
+      - id
+      - last_name
+    UserSpecialization:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        specialization:
+          $ref: '#/components/schemas/Specialization'
+        is_main:
+          type: boolean
+      required:
+      - id
+      - specialization
+    ViewNews:
+      type: object
+      properties:
+        news_id:
+          type: array
+          items:
+            type: integer
+      required:
+      - news_id
+    Voite:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        positive_voice:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: ЗА
+        negative_voice:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Против
+        abstaned_voice:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Воздержалось
+        user:
+          type: integer
+          readOnly: true
+      required:
+      - id
+      - user
+    WithdrawFunds:
+      type: object
+      description: (Serializer) для вывода средств на банковский счет
+      properties:
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        bank_card:
+          type: string
+        expiry_month:
+          type: integer
+        expiry_year:
+          type: integer
+        note:
+          type: string
+        save_payment_template:
+          type: boolean
+          default: false
+        card_holder:
+          type: string
+        card_holder_country:
+          type: string
+        card_holder_city:
+          type: string
+        card_holder_dob:
+          type: string
+        card_holder_mobile_phone_number:
+          type: string
+      required:
+      - amount
+      - bank_card
+      - currency
+      - expiry_month
+      - expiry_year
+    WithdrawalEcurrency:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        cryptoCurrencyAmount:
+          type: number
+          format: double
+        currency:
+          type: string
+        ecurrency:
+          type: string
+        receiver:
+          type: string
+        destinationTag:
+          type: string
+        orderId:
+          type: string
+        note:
+          type: string
+      required:
+      - orderId
+      - receiver
+    Work:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          title: Заголовок
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Обложка
+          pattern: (?:png|jpg)$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата создания
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,2})?$
+          nullable: true
+          title: Стоимость
+        price_currency:
+          nullable: true
+          title: Валюта
+          oneOf:
+          - $ref: '#/components/schemas/PriceCurrencyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        link:
+          type: string
+          nullable: true
+          title: Ссылка
+          maxLength: 255
+        video:
+          type: string
+          nullable: true
+          title: Видео
+          maxLength: 255
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+        file4:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл4
+        category:
+          $ref: '#/components/schemas/Specialization'
+        time_spend:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          title: Потраченное время в часах
+        table_place:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          title: Место в таблице
+      required:
+      - category
+      - created_at
+      - description
+      - id
+      - title
+    WorkCreate:
+      type: object
+      properties:
+        title:
+          type: string
+          title: Заголовок
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Обложка
+          pattern: (?:png|jpg)$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата создания
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,2})?$
+          nullable: true
+          title: Стоимость
+        price_currency:
+          nullable: true
+          title: Валюта
+          oneOf:
+          - $ref: '#/components/schemas/PriceCurrencyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        link:
+          type: string
+          nullable: true
+          title: Ссылка
+          maxLength: 255
+        video:
+          type: string
+          nullable: true
+          title: Видео
+          maxLength: 255
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+        file4:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл4
+        category:
+          type: integer
+          nullable: true
+          title: Категория
+        time_spend:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          title: Потраченное время в часах
+        table_place:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          title: Место в таблице
+      required:
+      - created_at
+      - description
+      - title
+    WorkUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+          title: Заголовок
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Обложка
+          pattern: (?:png|jpg)$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата создания
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,2})?$
+          nullable: true
+          title: Стоимость
+        price_currency:
+          nullable: true
+          title: Валюта
+          oneOf:
+          - $ref: '#/components/schemas/PriceCurrencyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        table_place:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          title: Место в таблице
+        link:
+          type: string
+          nullable: true
+          title: Ссылка
+          maxLength: 255
+        video:
+          type: string
+          nullable: true
+          title: Видео
+          maxLength: 255
+        file1:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл1
+        file2:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл2
+        file3:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл3
+        file4:
+          type: string
+          format: uri
+          nullable: true
+          title: Файл4
+        category:
+          type: integer
+          nullable: true
+          title: Категория
+        time_spend:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          title: Потраченное время в часах
+      required:
+      - created_at
+      - description
+      - title
+  securitySchemes:
+    knoxTokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
